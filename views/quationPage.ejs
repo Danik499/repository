@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2><%= data.quation %></h2>
+    <div><%= data.description %></div>
+    <% for (let i of data.answers) { %>
+    <h3><%= i.title %></h3>
+    <div><%= i.description %></div>
+    <% } %>
+    <hr />
+    <% if (!isLoggedIn) { %>
+    <p>You must be logged in to add a new answer!!</p>
+    <% } else {%>
+    <form action="/addAnswer" method="post" onsubmit="return check()">
+        Title: <input type="text" name="title" id="title" />
+        Description: <textarea name="description" id="description"></textarea>
+        <button type="submit">submit</button>
+    </form>
+    <% } %>
+
+    <script defer>
+        function check() {
+            let desc = document.getElementById("description").value;
+            if (desc) return true;
+            else return false
+        }
+    </script>
+</body>
+
+</html>

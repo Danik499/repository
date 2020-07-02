@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #logOut {
+            position: relative;
+            float: right;
+        }
+
+        #form {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <% for (let i of data) { %>
+    <form action="/quationPage?id=<%= i.id %>" method="POST">
+        <%= i.title %>
+        <button type="submit">Submit</button>
+    </form>
+    <% } %>
+    <hr />
+    <form action="/newQuation" method="post" id="form" onsubmit="return check()">
+        Title: <input type="text" name="quation" id="title" /> <br />
+        Descriptoin: <textarea name="description" id="desc"></textarea> <br />
+        <p id="p"></p>
+        <button type="submit">Submit</button>
+    </form>
+    <form action="/logOut" method="get" id="logOut">
+        <button type="submit">Log out</button>
+    </form>
+    <script defer>
+        function check() {
+            let title = document.getElementById("title").value;
+            let desc = document.getElementById("desc").value;
+            if (title && desc) return true;
+            else {
+                document.getElementById("p").innerHTML = "All fields must be filled!";
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

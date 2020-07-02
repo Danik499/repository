@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <% for (let i of data) { %>
+    <form action="/quationPage?id=<%= i.id %>" method="POST">
+        <span><%= i.title %></span>
+        <button type="submit" class="">Submit</button>
+    </form>
+    <% } %>
+    <hr />
+    <h2>Log in</h2>
+    <form action="/login" method="post" onsubmit="return check()">
+        Email: <input type="email" name="email" id="email" /> <br />
+        Password: <input type="password" name="password" id="pass"> <br />
+        <p id="p"></p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <form action="/registrationPage" method="get">
+        <button type="submit">Registration</button>
+    </form>
+
+    <script>
+        function check() {
+            let email = document.getElementById("email").value;
+            let pass = document.getElementById("pass").value;
+            if (email && pass) return true;
+            else {
+                let p = document.getElementById("p");
+                p.innerHTML = "All fields must be filled!"
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>
